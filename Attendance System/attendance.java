@@ -1,74 +1,67 @@
-import java.util.*;
+import java.util.Scanner;
 
-class attandance {
+class Attendance {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("----------------------------------------------");
-        System.out.println("\t\tAttandace Note");
+        System.out.println("\t\tAttendance Note");
         System.out.println("----------------------------------------------");
-        System.out.print("Enter the total number of students:");
+        System.out.print("Enter the total number of students: ");
         int x = sc.nextInt();
-        // students
+        
+        // Students' roll numbers
         int roll[] = new int[x];
-        // enter a students in array
+        char present[] = new char[x];
+        
+        // Initialize roll numbers
         for (int i = 0; i < x; i++) {
             roll[i] = i + 1;
         }
-        // take attendance
-        System.out.println("Note: Enter 'p' for Present and 'a' for absent.");
-        char present[] = new char[x];
+        
+        // Take attendance
+        System.out.println("Note: Enter 'p' for Present and 'a' for Absent.");
         for (int i = 0; i < x; i++) {
             System.out.print("Roll No " + roll[i] + ": ");
-            present[i] = sc.next().charAt(0);
-
+            present[i] = Character.toLowerCase(sc.next().charAt(0));
         }
 
-        System.out.println();
-        System.out.print(
-                "Note: Enter 's' to show the attendance, 'd' for present and absent student divide and 'x' for exit...");
-        char show = sc.next().charAt(0);
-        if (show == 's') {
-            System.out.println("----------------------------------------------");
-            System.out.println("\t\tAttandace");
-            System.out.println("----------------------------------------------");
-            for (int i = 0; i < x; i++) {
-                System.out.print("Roll No " + roll[i] + ": ");
-                if (present[i] == 'p') {
-                    System.out.print("Present");
-                    System.out.println();
-                } else {
-                    System.out.print("Absent");
-                    System.out.println();
-                }
-            }
-
-        }
-        if (show == 'd') {
-            System.out.println("----------------------------------------------");
-            System.out.println("\t\tAttandace");
-            System.out.println("----------------------------------------------");
-
-            System.out.println("Present Students:");
-            for (int i = 0; i < x; i++) {
-                if (present[i] == 'p') {
-                    System.out.println("Roll no: " + roll[i]);
-                } else {
-
-                }
-            }
+        // Menu loop
+        while (true) {
             System.out.println();
-            System.out.println("Absent Students:");
-            for (int i = 0; i < x; i++) {
-                if (present[i] == 'a') {
-                    System.out.println("Roll no: " + roll[i]);
-                } else {
-
+            System.out.print(
+                "Note: Enter 's' to show attendance, 'd' to separate present/absent students, or 'x' to exit: ");
+            char show = Character.toLowerCase(sc.next().charAt(0));
+            
+            if (show == 's') {
+                System.out.println("----------------------------------------------");
+                System.out.println("\t\tAttendance");
+                System.out.println("----------------------------------------------");
+                for (int i = 0; i < x; i++) {
+                    System.out.println("Roll No " + roll[i] + ": " + (present[i] == 'p' ? "Present" : "Absent"));
                 }
+            } else if (show == 'd') {
+                System.out.println("----------------------------------------------");
+                System.out.println("\t\tAttendance");
+                System.out.println("----------------------------------------------");
+                System.out.println("Present Students:");
+                for (int i = 0; i < x; i++) {
+                    if (present[i] == 'p') {
+                        System.out.println("Roll No: " + roll[i]);
+                    }
+                }
+                System.out.println("Absent Students:");
+                for (int i = 0; i < x; i++) {
+                    if (present[i] == 'a') {
+                        System.out.println("Roll No: " + roll[i]);
+                    }
+                }
+            } else if (show == 'x') {
+                System.out.println("Exiting... Thank you!");
+                break;
+            } else {
+                System.out.println("Invalid option. Please try again.");
             }
-
-        } else {
-            System.exit(show);
         }
-
+        sc.close();
     }
 }
