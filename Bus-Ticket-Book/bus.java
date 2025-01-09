@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class bus {
+public class Main {
     public class AnsiColors {
         public static final String RESET = "\u001B[0m";
         
